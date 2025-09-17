@@ -1,5 +1,12 @@
-const BurgerStack = (props) => {
-  return <ul>// map through props.ingredients</ul>;
+const BurgerStack = ({ ingredients, handleClick }) => {
+  return <ul>
+    { ingredients.map((ingredient) => 
+    <li 
+    style={{backgroundColor: `${ingredient.color}`}}>
+        {ingredient.name}
+        <button name="remove" onClick={() => handleClick(event, ingredient)} >X</button>
+    </li> )}
+  </ul>;
 };
 
 export default BurgerStack;

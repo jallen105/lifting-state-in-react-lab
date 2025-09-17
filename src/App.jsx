@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import './App.css'
+import IngredientList from './components/IngredientList/IngredientList';
+import BurgerStack from './components/BurgerStack/BurgerStack';
 
 const App = () => {
+
+  const [stack, setStack] = useState([])
+
   const availableIngredients = [
     { name: 'Kaiser Bun', color: 'saddlebrown' },
     { name: 'Sesame Bun', color: 'sandybrown' },
@@ -19,11 +24,17 @@ const App = () => {
     { name: 'Swiss Cheese', color: '#F1E1A8' },
   ];
 
+  const handleClick = (event, ingredient) => {
+    const removeIngredientFromStack = stack.filter((stackIngredient) => stackIngredient.name !== ingredient.name)
+    event.target.name === 'add' ? setStack([...stack, ingredient]) : setStack([...removeIngredientFromStack])
+  }
+
   return (
     <main>
       <h1>Burger Stacker</h1>
       <section>
-      {/* List & Stack components */}
+        <IngredientList availableIngredients={availableIngredients} handleClick={handleClick} />
+        <BurgerStack ingredients={stack} handleClick={handleClick} />
       </section>
     </main>
   );
