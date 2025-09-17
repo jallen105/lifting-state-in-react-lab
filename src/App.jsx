@@ -25,7 +25,7 @@ const App = () => {
   ];
 
   const handleClick = (event, ingredient) => {
-    const removeIngredientFromStack = stack.filter((stackIngredient) => stackIngredient.name !== ingredient.name)
+    const removeIngredientFromStack = stack.filter((stackIngredient) => stack.indexOf(stackIngredient) !== parseInt(event.target.parentElement.id))
     event.target.name === 'add' ? setStack([...stack, ingredient]) : setStack([...removeIngredientFromStack])
   }
 
@@ -33,8 +33,8 @@ const App = () => {
     <main>
       <h1>Burger Stacker</h1>
       <section>
-        <IngredientList availableIngredients={availableIngredients} handleClick={handleClick} />
-        <BurgerStack ingredients={stack} handleClick={handleClick} />
+        <IngredientList ingredientList={availableIngredients} handleClick={handleClick} />
+        <BurgerStack ingredientList={stack} handleClick={handleClick} />
       </section>
     </main>
   );

@@ -1,13 +1,12 @@
-const IngredientList = ({ availableIngredients, handleClick }) => {
+import Ingredient from "../Ingredient/Ingredient";
+
+const IngredientList = ({ ingredientList, handleClick }) => {
+
   return <ul>
-    { availableIngredients.map((ingredient, idx) => 
-    <li
-    key={idx} 
-    style={{backgroundColor: `${ingredient.color}`}}>
-        {ingredient.name}
-        <button name="add" onClick={() => handleClick(event, ingredient)}>+</button>
-    </li> )}
-    </ul>;
+    { ingredientList.map((ingredient, idx) => (
+        <Ingredient ingredient={ingredient} handleClick={handleClick} idx={idx} button={'add'} />
+    ))}
+  </ul>
 };
 
 export default IngredientList;

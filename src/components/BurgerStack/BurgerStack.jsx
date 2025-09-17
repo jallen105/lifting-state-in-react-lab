@@ -1,12 +1,13 @@
-const BurgerStack = ({ ingredients, handleClick }) => {
+import Ingredient from "../Ingredient/Ingredient";
+
+const BurgerStack = ({ingredientList, handleClick}) => {
+
   return <ul>
-    { ingredients.map((ingredient) => 
-    <li 
-    style={{backgroundColor: `${ingredient.color}`}}>
-        {ingredient.name}
-        <button name="remove" onClick={() => handleClick(event, ingredient)} >X</button>
-    </li> )}
-  </ul>;
+    { ingredientList.length > 0? ingredientList.map((ingredient, idx) => (
+        <Ingredient ingredient={ingredient} handleClick={handleClick} idx={idx} button={'remove'} />
+    )) : 'No Ingredients' }
+  </ul>
+  
 };
 
 export default BurgerStack;
